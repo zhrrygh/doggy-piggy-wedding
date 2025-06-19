@@ -141,9 +141,12 @@
 
                 <!-- 修复方案：使用 Script 方式嵌入，并移除了有问题的 height=0 参数 -->
                 <!-- 我们将脚本放在一个独立的容器中，并设置为 text-left 以避免样式冲突 -->
-                <div class="mt-8 text-left border border-gray-200 rounded-xl shadow-lg overflow-hidden p-2 md:p-4">
-                    <script src="https://ae679rv4.jsjform.com/f/aXJAsk/embedded.js?background=white&banner=hide&inner_redirect=false"></script>
-                </div>
+                <div class="mt-8 border border-gray-200 rounded-xl shadow-lg overflow-hidden" style="height: 650px;">
+                    <iframe
+                        src="https://ae679rv4.jsjform.com/f/aXJAsk"
+                        style="width: 100%; height: 100%; border: 0;"
+                        allowfullscreen>
+                    </iframe>
             </div>
         </section>
 
