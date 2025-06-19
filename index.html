@@ -20,7 +20,7 @@
             scroll-behavior: smooth;
         }
 
-        /* 改动：将背景图样式放入媒体查询中，仅对大屏幕生效 */
+        /* 将背景图样式放入媒体查询中，仅对大屏幕生效 */
         @media (min-width: 1024px) {
             body::before {
                 content: '';
@@ -60,7 +60,9 @@
 </head>
 <body class="leading-relaxed">
 
+    <!-- 外层布局容器，实现桌面端居中窄屏效果 -->
     <div class="relative lg:flex lg:justify-center">
+        <!-- 主内容容器，在大屏上限制宽度，并有自己的背景和阴影 -->
         <div class="w-full max-w-[480px] lg:shadow-2xl lg:my-4 bg-white">
 
             <header
@@ -68,16 +70,15 @@
                 style="background-image: url('images/开头竖版.jpg');">
                 <div class="bg-black bg-opacity-40 p-6 rounded-xl backdrop-blur-sm">
                     <p class="text-xl mb-4 tracking-widest">WE ARE GETTING MARRIED</p>
-                    <!-- 改动：调整了字体大小，确保单行显示 -->
                     <h1 class="text-5xl font-headline font-bold">张睿 & 林林</h1>
                     <p class="text-lg mt-6 tracking-wide">2025年08月02日</p>
                 </div>
             </header>
 
             <main>
-                <section class="text-center py-16 md:py-20 px-6">
-                    <h2 class="text-3xl md:text-4xl font-headline mb-6">诚挚邀请</h2>
-                    <p class="text-lg md:text-xl max-w-2xl mx-auto leading-loose">
+                <section class="text-center py-16 px-6">
+                    <h2 class="text-3xl font-headline mb-6">诚挚邀请</h2>
+                    <p class="text-lg max-w-2xl mx-auto leading-loose">
                         始于初见，陷于陪伴，终于白首。<br>
                         我们决定用一生去回答“我愿意”。<br>
                         诚挚地邀请您和您的家人，<br>
@@ -88,9 +89,10 @@
 
                 <div class="border-t-2 border-dashed border-gray-300 w-32 mx-auto"></div>
 
-                <section id="details" class="py-16 md:py-20 px-6">
-                    <h2 class="text-3xl md:text-4xl font-headline text-center mb-12">婚礼信息</h2>
-                    <div class="bg-gray-50/70 backdrop-blur-sm shadow-xl rounded-2xl p-8 md:p-12 overflow-hidden">
+                <section id="details" class="py-16 px-6">
+                    <h2 class="text-3xl font-headline text-center mb-12">婚礼信息</h2>
+                    <div class="bg-gray-50/70 backdrop-blur-sm shadow-xl rounded-2xl p-8 overflow-hidden">
+                        <!-- 改动：确保外层是单列grid，并移除了所有子项的列合并样式 -->
                         <div class="grid gap-8 text-lg">
                             <div class="flex items-start space-x-4">
                                 <i data-lucide="calendar-heart" class="w-8 h-8 text-[#d2966d] flex-shrink-0 mt-1"></i>
@@ -106,7 +108,8 @@
                                     <p>18:18</p>
                                 </div>
                             </div>
-                            <div class="md:col-span-2 flex items-start space-x-4">
+                            <!-- 改动：移除了 md:col-span-2 -->
+                            <div class="flex items-start space-x-4">
                                 <i data-lucide="map-pin" class="w-8 h-8 text-[#d2966d] flex-shrink-0 mt-1"></i>
                                 <div>
                                     <h3 class="font-bold text-xl mb-1">婚礼地点</h3>
@@ -120,8 +123,8 @@
                     </div>
                 </section>
 
-                <section class="py-16 md:py-20 px-6">
-                     <h2 class="text-3xl md:text-4xl font-headline text-center mb-12">美好回忆</h2>
+                <section class="py-16 px-6">
+                     <h2 class="text-3xl font-headline text-center mb-12">美好回忆</h2>
                      <div class="grid grid-cols-2 gap-4">
                         <div class="overflow-hidden rounded-lg shadow-lg aspect-w-3 aspect-h-4 group">
                             <img src="images/张睿单人.jpg" alt="我们的照片1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
@@ -132,9 +135,9 @@
                      </div>
                 </section>
 
-                <section id="rsvp" class="py-16 md:py-20 px-6">
+                <section id="rsvp" class="py-16 px-6">
                     <div class="max-w-xl mx-auto text-center">
-                        <h2 class="text-3xl md:text-4xl font-headline mb-4">期待您的到来</h2>
+                        <h2 class="text-3xl font-headline mb-4">期待您的到来</h2>
                         <p class="text-gray-600 mb-8">为便于我们为您安排住宿，请您在2025年7月20日前填写以下回执，感谢！</p>
                         <div class="mt-8 border border-gray-200 rounded-xl shadow-lg overflow-hidden" style="height: 1000px;">
                             <iframe
@@ -152,7 +155,11 @@
                 <p>张睿 & 林林</p>
             </footer>
 
-        </div> </div> <script>
+        </div>
+    </div>
+
+
+    <script>
         lucide.createIcons();
     </script>
 </body>
