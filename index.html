@@ -14,11 +14,13 @@
     <style>
         body {
             font-family: 'Noto Serif SC', serif;
+            /* 页面背景色，在大屏下两侧可见 */
             background-color: #fdfaf6;
             color: #5d4037;
             scroll-behavior: smooth;
         }
 
+        /* 将背景图样式放入媒体查询中，仅对大屏幕生效 */
         @media (min-width: 1024px) {
             body::before {
                 content: '';
@@ -31,7 +33,7 @@
                 background-size: cover;
                 background-position: center;
                 background-attachment: fixed;
-                opacity: 0.15;
+                opacity: 0.15; /* 调整透明度 */
                 z-index: -1;
             }
         }
@@ -58,112 +60,107 @@
 </head>
 <body class="leading-relaxed">
 
+    <!-- 外层布局容器，实现桌面端居中窄屏效果 -->
     <div class="relative lg:flex lg:justify-center">
+        <!-- 主内容容器，在大屏上限制宽度，并有自己的背景和阴影 -->
         <div class="w-full max-w-[480px] lg:shadow-2xl lg:my-4 bg-white">
 
-            <!-- 其他部分保持不变... -->
+            <header
+                class="h-screen min-h-[600px] flex flex-col items-center justify-center text-white text-center p-4 parallax"
+                style="background-image: url('images/开头竖版.jpg');">
+                <div class="bg-black bg-opacity-40 p-6 rounded-xl backdrop-blur-sm">
+                    <p class="text-xl mb-4 tracking-widest">WE ARE GETTING MARRIED</p>
+                    <h1 class="text-5xl font-headline font-bold">张睿 & 林林</h1>
+                    <p class="text-lg mt-6 tracking-wide">2025年08月02日</p>
+                </div>
+            </header>
 
-            <section id="details" class="py-16 px-6">
-                <h2 class="text-3xl font-headline text-center mb-12">婚礼信息</h2>
-                <div class="bg-gray-50/70 backdrop-blur-sm shadow-xl rounded-2xl p-8 overflow-hidden">
-                    <div class="grid gap-8 text-lg">
-                        <div class="flex items-start space-x-4">
-                            <i data-lucide="calendar-heart" class="w-8 h-8 text-[#d2966d] flex-shrink-0 mt-1"></i>
-                            <div>
-                                <h3 class="font-bold text-xl mb-1">婚礼日期</h3>
-                                <p>2025年8月2日（星期六）</p>
+            <main>
+                <section class="text-center py-16 px-6">
+                    <h2 class="text-3xl font-headline mb-6">诚挚邀请</h2>
+                    <p class="text-lg max-w-2xl mx-auto leading-loose">
+                        始于初见，陷于陪伴，终于白首。<br>
+                        我们决定用一生去回答“我愿意”。<br>
+                        诚挚地邀请您和您的家人，<br>
+                        来参加我们的婚礼，<br>
+                        见证并分享这份独一无二的喜悦。
+                    </p>
+                </section>
+
+                <div class="border-t-2 border-dashed border-gray-300 w-32 mx-auto"></div>
+
+                <section id="details" class="py-16 px-6">
+                    <h2 class="text-3xl font-headline text-center mb-12">婚礼信息</h2>
+                    <div class="bg-gray-50/70 backdrop-blur-sm shadow-xl rounded-2xl p-8 overflow-hidden">
+                        <!-- 改动：确保外层是单列grid，并移除了所有子项的列合并样式 -->
+                        <div class="grid gap-8 text-lg">
+                            <div class="flex items-start space-x-4">
+                                <i data-lucide="calendar-heart" class="w-8 h-8 text-[#d2966d] flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <h3 class="font-bold text-xl mb-1">婚礼日期</h3>
+                                    <p>2025年8月2日（星期六）</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <i data-lucide="clock" class="w-8 h-8 text-[#d2966d] flex-shrink-0 mt-1"></i>
-                            <div>
-                                <h3 class="font-bold text-xl mb-1">晚宴时间</h3>
-                                <p>18:18</p>
+                            <div class="flex items-start space-x-4">
+                                <i data-lucide="clock" class="w-8 h-8 text-[#d2966d] flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <h3 class="font-bold text-xl mb-1">晚宴时间</h3>
+                                    <p>18:18</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <i data-lucide="map-pin" class="w-8 h-8 text-[#d2966d] flex-shrink-0 mt-1"></i>
-                            <div>
-                                <h3 class="font-bold text-xl mb-1">婚礼地点</h3>
-                                <p class="mb-2">江苏省海安市王府邦瑞国际大酒店奥斯卡厅</p>
-                                <a href="https://surl.amap.com/owplguw46Yf" target="_blank" class="inline-block btn-primary px-4 py-2 rounded-lg text-sm">
-                                    查看地图 & 导航
-                                </a>
+                            <!-- 改动：移除了 md:col-span-2 -->
+                            <div class="flex items-start space-x-4">
+                                <i data-lucide="map-pin" class="w-8 h-8 text-[#d2966d] flex-shrink-0 mt-1"></i>
+                                <div>
+                                    <h3 class="font-bold text-xl mb-1">婚礼地点</h3>
+                                    <p class="mb-2">江苏省海安市王府邦瑞国际大酒店奥斯卡厅</p>
+                                    <a href="https://surl.amap.com/owplguw46Yf" target="_blank" class="inline-block btn-primary px-4 py-2 rounded-lg text-sm">
+                                        查看地图 & 导航
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <!-- 新增的统一日历按钮 -->
-                        <div class="mt-6 text-center">
-                            <a href="#" id="addToCalendar" class="inline-flex items-center btn-primary px-6 py-3 rounded-lg text-lg">
-                                <i data-lucide="calendar-plus" class="w-5 h-5 mr-2"></i>
-                                加入日历
-                            </a>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- 其他部分保持不变... -->
+                <section class="py-16 px-6">
+<!--                     <h2 class="text-3xl font-headline text-center mb-12">美好回忆</h2>-->
+                     <div class="grid grid-cols-2 gap-4">
+                        <div class="overflow-hidden rounded-lg shadow-lg aspect-w-3 aspect-h-4 group">
+                            <img src="images/张睿单人.jpg" alt="我们的照片1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
+                        </div>
+                         <div class="overflow-hidden rounded-lg shadow-lg aspect-w-3 aspect-h-4 group">
+                            <img src="images/林林单人.jpg" alt="我们的照片2" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
+                        </div>
+                     </div>
+                </section>
+
+                <section id="rsvp" class="py-16 px-6">
+                    <div class="max-w-xl mx-auto text-center">
+                        <h2 class="text-3xl font-headline mb-4">期待您的到来</h2>
+<!--                        <p class="text-gray-600 mb-8">请您填写以下回执，感谢！</p>-->
+                        <div class="mt-8 border border-gray-200 rounded-xl shadow-lg overflow-hidden" style="height: 800px;">
+                            <iframe
+                                src="https://ae679rv4.jsjform.com/f/aXJAsk"
+                                style="width: 100%; height: 100%; border: 0;"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="text-center py-8 text-gray-500">
+                <p>❤️ Made with Love ❤️</p>
+                <p>张睿 & 林林</p>
+            </footer>
 
         </div>
     </div>
 
+
     <script>
         lucide.createIcons();
-        
-        // 添加日历事件功能（仅支持iOS和华为设备）
-        document.getElementById('addToCalendar').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // 创建日历事件数据
-            const eventData = {
-                title: '张睿 & 林林的婚礼',
-                description: '诚挚邀请您参加我们的婚礼',
-                location: '江苏省海安市王府邦瑞国际大酒店奥斯卡厅',
-                startTime: '2025-08-02T18:18:00+08:00',
-                endTime: '2025-08-02T21:18:00+08:00'
-            };
-            
-            // 判断设备类型
-            const userAgent = navigator.userAgent.toLowerCase();
-            
-            if (/iphone|ipad|ipod/i.test(userAgent)) {
-                // iOS设备使用ics文件下载
-                const icsContent = [
-                    'BEGIN:VCALENDAR',
-                    'VERSION:2.0',
-                    'BEGIN:VEVENT',
-                    'SUMMARY:' + eventData.title,
-                    'DESCRIPTION:' + eventData.description,
-                    'LOCATION:' + eventData.location,
-                    'DTSTART:' + eventData.startTime.replace(/[-:]/g, ''),
-                    'DTEND:' + eventData.endTime.replace(/[-:]/g, ''),
-                    'END:VEVENT',
-                    'END:VCALENDAR'
-                ].join('\n');
-                
-                const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-                const url = URL.createObjectURL(blob);
-                
-                const link = document.createElement('a');
-                link.href = url;
-                link.setAttribute('download', '张睿和林林的婚礼.ics');
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                
-            } else if (/huawei|honor/i.test(userAgent)) {
-                // 华为设备使用华为日历
-                const startTimestamp = new Date(eventData.startTime).getTime();
-                const endTimestamp = new Date(eventData.endTime).getTime();
-                
-                window.open(`https://calendar.hicloud.com/event?title=${encodeURIComponent(eventData.title)}&location=${encodeURIComponent(eventData.location)}&start=${startTimestamp}&end=${endTimestamp}&description=${encodeURIComponent(eventData.description)}`);
-                
-            } else {
-                // 非苹果/华为设备显示提示
-                alert('您的设备不支持直接添加日历，请手动将婚礼信息添加到日历中。\n\n时间：2025年8月2日 18:18\n地点：江苏省海安市王府邦瑞国际大酒店奥斯卡厅');
-            }
-        });
     </script>
 </body>
 </html>
