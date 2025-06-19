@@ -92,6 +92,7 @@
                 <section id="details" class="py-16 px-6">
                     <h2 class="text-3xl font-headline text-center mb-12">婚礼信息</h2>
                     <div class="bg-gray-50/70 backdrop-blur-sm shadow-xl rounded-2xl p-8 overflow-hidden">
+                        <!-- 改动：确保外层是单列grid，并移除了所有子项的列合并样式 -->
                         <div class="grid gap-8 text-lg">
                             <div class="flex items-start space-x-4">
                                 <i data-lucide="calendar-heart" class="w-8 h-8 text-[#d2966d] flex-shrink-0 mt-1"></i>
@@ -107,18 +108,15 @@
                                     <p>18:18</p>
                                 </div>
                             </div>
+                            <!-- 改动：移除了 md:col-span-2 -->
                             <div class="flex items-start space-x-4">
                                 <i data-lucide="map-pin" class="w-8 h-8 text-[#d2966d] flex-shrink-0 mt-1"></i>
                                 <div>
                                     <h3 class="font-bold text-xl mb-1">婚礼地点</h3>
                                     <p class="mb-2">江苏省海安市王府邦瑞国际大酒店奥斯卡厅</p>
-                                    <!-- 按钮容器 -->
-                                    <div class="mt-4 flex flex-wrap gap-3">
-                                        <a href="https://surl.amap.com/owplguw46Yf" target="_blank" class="inline-block btn-primary px-4 py-2 rounded-lg text-sm">
-                                            查看地图 & 导航
-                                        </a>
-                                        <!-- 改动：已删除“加入日历”按钮 -->
-                                    </div>
+                                    <a href="https://surl.amap.com/owplguw46Yf" target="_blank" class="inline-block btn-primary px-4 py-2 rounded-lg text-sm">
+                                        查看地图 & 导航
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -126,14 +124,13 @@
                 </section>
 
                 <section class="py-16 px-6">
+<!--                     <h2 class="text-3xl font-headline text-center mb-12">美好回忆</h2>-->
                      <div class="grid grid-cols-2 gap-4">
                         <div class="overflow-hidden rounded-lg shadow-lg aspect-w-3 aspect-h-4 group">
-                            <!-- 改动：添加 loading="lazy" 进行图片懒加载优化 -->
-                            <img src="images/张睿单人大.jpeg" alt="我们的照片1" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
+                            <img src="images/张睿单人大.jpeg" alt="我们的照片1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
                         </div>
                          <div class="overflow-hidden rounded-lg shadow-lg aspect-w-3 aspect-h-4 group">
-                            <!-- 改动：添加 loading="lazy" 进行图片懒加载优化 -->
-                            <img src="images/林林单人大.jpeg" alt="我们的照片2" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
+                            <img src="images/林林单人大.jpeg" alt="我们的照片2" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
                         </div>
                      </div>
                 </section>
@@ -141,12 +138,12 @@
                 <section id="rsvp" class="py-16 px-6">
                     <div class="max-w-xl mx-auto text-center">
                         <h2 class="text-3xl font-headline mb-4">期待您的到来</h2>
+<!--                        <p class="text-gray-600 mb-8">请您填写以下回执，感谢！</p>-->
                         <div class="mt-8 border border-gray-200 rounded-xl shadow-lg overflow-hidden" style="height: 800px;">
                             <iframe
                                 src="https://ae679rv4.jsjform.com/f/aXJAsk"
                                 style="width: 100%; height: 100%; border: 0;"
-                                allowfullscreen
-                                loading="lazy">
+                                allowfullscreen>
                             </iframe>
                         </div>
                     </div>
@@ -161,58 +158,9 @@
         </div>
     </div>
 
-    <!-- 改动：添加 autoplay 属性以尝试自动播放 -->
-    <audio id="bg-music" loop autoplay>
-        <source src="musics/10. Don't Call Tonight.mp3" type="audio/mpeg">
-        您的浏览器不支持播放音乐
-    </audio>
-
-    <!-- 音乐控制按钮 -->
-    <div id="music-control" class="fixed bottom-5 right-5 z-50 bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-lg cursor-pointer">
-        <i id="play-icon" data-lucide="play" class="w-6 h-6 text-[#5d4037]"></i>
-        <i id="pause-icon" data-lucide="pause" class="w-6 h-6 text-[#5d4037] hidden"></i>
-    </div>
-
 
     <script>
         lucide.createIcons();
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const musicControl = document.getElementById('music-control');
-            const bgMusic = document.getElementById('bg-music');
-            const playIcon = document.getElementById('play-icon');
-            const pauseIcon = document.getElementById('pause-icon');
-
-            // 尝试自动播放并处理结果
-            let playPromise = bgMusic.play();
-            if (playPromise !== undefined) {
-                playPromise.then(_ => {
-                    // 自动播放成功
-                    playIcon.classList.add('hidden');
-                    pauseIcon.classList.remove('hidden');
-                }).catch(error => {
-                    // 自动播放被阻止
-                    console.log("音乐自动播放被浏览器阻止，等待用户交互。");
-                    playIcon.classList.remove('hidden');
-                    pauseIcon.classList.add('hidden');
-                });
-            }
-
-            // 为控制按钮添加点击事件
-            if (musicControl) {
-                musicControl.addEventListener('click', () => {
-                    if (bgMusic.paused) {
-                        bgMusic.play();
-                        playIcon.classList.add('hidden');
-                        pauseIcon.classList.remove('hidden');
-                    } else {
-                        bgMusic.pause();
-                        playIcon.classList.remove('hidden');
-                        pauseIcon.classList.add('hidden');
-                    }
-                });
-            }
-        });
     </script>
 </body>
 </html>
