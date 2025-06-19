@@ -117,8 +117,8 @@
                                         <a href="https://surl.amap.com/owplguw46Yf" target="_blank" class="inline-block btn-primary px-4 py-2 rounded-lg text-sm">
                                             查看地图 & 导航
                                         </a>
-                                        <!-- 新增：“加入日历”按钮 -->
-                                        <a id="add-to-calendar" href="#" download="张睿与林林的婚礼.ics" class="inline-block btn-primary px-4 py-2 rounded-lg text-sm">
+                                        <!-- 改动：直接链接到 .ics 文件 -->
+                                        <a href="wedding.ics" class="inline-block btn-primary px-4 py-2 rounded-lg text-sm">
                                             加入日历
                                         </a>
                                     </div>
@@ -163,14 +163,14 @@
         </div>
     </div>
 
-    <!-- 新增：背景音乐播放器 -->
+    <!-- 背景音乐播放器 -->
     <audio id="bg-music" loop>
         <!-- 重要：请将这里的 src 替换为您自己的音乐文件路径，例如 "music.mp3" -->
         <source src="music.mp3" type="audio/mpeg">
         您的浏览器不支持播放音乐
     </audio>
 
-    <!-- 新增：音乐控制按钮 -->
+    <!-- 音乐控制按钮 -->
     <div id="music-control" class="fixed bottom-5 right-5 z-50 bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-lg cursor-pointer">
         <!-- 默认显示播放图标 -->
         <i id="play-icon" data-lucide="play" class="w-6 h-6 text-[#5d4037]"></i>
@@ -185,34 +185,7 @@
         // 整合所有功能的脚本
         document.addEventListener('DOMContentLoaded', function() {
 
-            // --- “加入日历”功能 ---
-            const eventDetails = {
-                title: '张睿林林婚礼',
-                location: '江苏省海安市王府邦瑞国际大酒店奥斯卡厅',
-                // 时间是基于中国时区 (UTC+8)
-                startTime: '20250802T181800',
-                endTime: '20250802T200000',
-                description: '诚挚邀请您参加张睿与林林的婚礼。'
-            };
-
-            const icsContent = [
-                'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//OurWedding//EN',
-                'BEGIN:VEVENT',
-                `UID:${new Date().toISOString()}@our-wedding.com`,
-                `DTSTAMP:${new Date().toISOString().replace(/[-:.]/g, '')}`,
-                `DTSTART;TZID=Asia/Shanghai:${eventDetails.startTime}`,
-                `DTEND;TZID=Asia/Shanghai:${eventDetails.endTime}`,
-                `SUMMARY:${eventDetails.title}`,
-                `LOCATION:${eventDetails.location}`,
-                `DESCRIPTION:${eventDetails.description}`,
-                'END:VEVENT', 'END:VCALENDAR'
-            ].join('\r\n');
-
-            const calendarButton = document.getElementById('add-to-calendar');
-            if (calendarButton) {
-                const dataUri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent);
-                calendarButton.setAttribute('href', dataUri);
-            }
+            // 改动：移除了动态生成日历文件的JS代码，因为它已被静态文件替代
 
             // --- 背景音乐控制逻辑 ---
             const musicControl = document.getElementById('music-control');
