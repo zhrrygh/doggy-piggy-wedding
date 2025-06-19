@@ -132,19 +132,17 @@
              </div>
         </section>
 
-        <!-- 5. 宾客回执 (RSVP) - 已为您修复 -->
+        <!-- 5. 宾客回执 (RSVP) - 更新为 Script 方式 -->
         <section id="rsvp" class="bg-white py-16 md:py-20 px-6">
             <div class="max-w-xl mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-headline mb-4">期待您的到来</h2>
                 <!-- 建议的回执截止日期 -->
                 <p class="text-gray-600 mb-8">为便于我们为您安排住宿，请您在 [2025年7月20日] 前填写以下回执，感谢！</p>
 
-                <!-- 修复方案：使用 iframe 方式嵌入表单 -->
-                <!-- 这种方式兼容性最好，能确保表单在所有设备上正确显示 -->
-                <div class="mt-8 border border-gray-200 rounded-xl shadow-lg overflow-hidden text-left">
-                    <!-- 我已根据您提供的 script 链接，推断出正确的 iframe 链接 -->
-                    <!-- 您无需再做修改，直接使用即可 -->
-                    <iframe id="goldendata_form_aXJAsk" src="https://ae679rv4.jsjform.com/f/aXJAsk?background=white&banner=hide&inner_redirect=false&embedded=true" width="100%" frameborder=0 allowTransparency="true" ></iframe>
+                <!-- 修复方案：使用 Script 方式嵌入，并移除了有问题的 height=0 参数 -->
+                <!-- 我们将脚本放在一个独立的容器中，并设置为 text-left 以避免样式冲突 -->
+                <div class="mt-8 text-left border border-gray-200 rounded-xl shadow-lg overflow-hidden p-2 md:p-4">
+                    <script src="https://ae679rv4.jsjform.com/f/aXJAsk/embedded.js?background=white&banner=hide&inner_redirect=false&height=0"></script>
                 </div>
             </div>
         </section>
