@@ -117,10 +117,7 @@
                                         <a href="https://surl.amap.com/owplguw46Yf" target="_blank" class="inline-block btn-primary px-4 py-2 rounded-lg text-sm">
                                             查看地图 & 导航
                                         </a>
-                                        <!-- 改动：直接链接到 .ics 文件 -->
-<!--                                        <a href="wedding.ics" class="inline-block btn-primary px-4 py-2 rounded-lg text-sm">-->
-<!--                                            加入日历-->
-<!--                                        </a>-->
+                                        <!-- 改动：已删除“加入日历”按钮 -->
                                     </div>
                                 </div>
                             </div>
@@ -129,13 +126,14 @@
                 </section>
 
                 <section class="py-16 px-6">
-<!--                     <h2 class="text-3xl font-headline text-center mb-12">美好回忆</h2>-->
                      <div class="grid grid-cols-2 gap-4">
                         <div class="overflow-hidden rounded-lg shadow-lg aspect-w-3 aspect-h-4 group">
-                            <img src="images/张睿单人.jpg" alt="我们的照片1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
+                            <!-- 改动：添加 loading="lazy" 进行图片懒加载优化 -->
+                            <img src="images/张睿单人.jpg" alt="我们的照片1" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
                         </div>
                          <div class="overflow-hidden rounded-lg shadow-lg aspect-w-3 aspect-h-4 group">
-                            <img src="images/林林单人.jpg" alt="我们的照片2" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
+                            <!-- 改动：添加 loading="lazy" 进行图片懒加载优化 -->
+                            <img src="images/林林单人.jpg" alt="我们的照片2" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
                         </div>
                      </div>
                 </section>
@@ -143,12 +141,12 @@
                 <section id="rsvp" class="py-16 px-6">
                     <div class="max-w-xl mx-auto text-center">
                         <h2 class="text-3xl font-headline mb-4">期待您的到来</h2>
-<!--                        <p class="text-gray-600 mb-8">请您填写以下回执，感谢！</p>-->
                         <div class="mt-8 border border-gray-200 rounded-xl shadow-lg overflow-hidden" style="height: 800px;">
                             <iframe
                                 src="https://ae679rv4.jsjform.com/f/aXJAsk"
                                 style="width: 100%; height: 100%; border: 0;"
-                                allowfullscreen>
+                                allowfullscreen
+                                loading="lazy">
                             </iframe>
                         </div>
                     </div>
@@ -163,18 +161,15 @@
         </div>
     </div>
 
-    <!-- 背景音乐播放器 -->
-    <audio id="bg-music" loop>
-        <!-- 重要：请将这里的 src 替换为您自己的音乐文件路径，例如 "music.mp3" -->
-        <source src="musics/19. Somebody Save Me.mp3" type="audio/mpeg">
+    <!-- 改动：添加 autoplay 属性以尝试自动播放 -->
+    <audio id="bg-music" loop autoplay>
+        <source src="musics/10. Don't Call Tonight.mp3" type="audio/mpeg">
         您的浏览器不支持播放音乐
     </audio>
 
     <!-- 音乐控制按钮 -->
     <div id="music-control" class="fixed bottom-5 right-5 z-50 bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-lg cursor-pointer">
-        <!-- 默认显示播放图标 -->
         <i id="play-icon" data-lucide="play" class="w-6 h-6 text-[#5d4037]"></i>
-        <!-- 默认隐藏暂停图标 -->
         <i id="pause-icon" data-lucide="pause" class="w-6 h-6 text-[#5d4037] hidden"></i>
     </div>
 
@@ -182,21 +177,32 @@
     <script>
         lucide.createIcons();
 
-        // 整合所有功能的脚本
         document.addEventListener('DOMContentLoaded', function() {
-
-            // 改动：移除了动态生成日历文件的JS代码，因为它已被静态文件替代
-
-            // --- 背景音乐控制逻辑 ---
             const musicControl = document.getElementById('music-control');
             const bgMusic = document.getElementById('bg-music');
             const playIcon = document.getElementById('play-icon');
             const pauseIcon = document.getElementById('pause-icon');
 
-            if (musicControl && bgMusic && playIcon && pauseIcon) {
+            // 尝试自动播放并处理结果
+            let playPromise = bgMusic.play();
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    // 自动播放成功
+                    playIcon.classList.add('hidden');
+                    pauseIcon.classList.remove('hidden');
+                }).catch(error => {
+                    // 自动播放被阻止
+                    console.log("音乐自动播放被浏览器阻止，等待用户交互。");
+                    playIcon.classList.remove('hidden');
+                    pauseIcon.classList.add('hidden');
+                });
+            }
+
+            // 为控制按钮添加点击事件
+            if (musicControl) {
                 musicControl.addEventListener('click', () => {
                     if (bgMusic.paused) {
-                        bgMusic.play().catch(e => console.log("音乐播放失败:", e));
+                        bgMusic.play();
                         playIcon.classList.add('hidden');
                         pauseIcon.classList.remove('hidden');
                     } else {
