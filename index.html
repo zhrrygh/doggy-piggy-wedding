@@ -14,7 +14,6 @@
     <style>
         body {
             font-family: 'Noto Serif SC', serif;
-            /* 页面背景色，在大屏下两侧可见 */
             background-color: #fdfaf6;
             color: #5d4037;
             scroll-behavior: smooth;
@@ -32,38 +31,32 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
+        /* 改动 1: 移除了 background-attachment: fixed，修复电脑端头图裁剪问题 */
         .parallax {
-            background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-        }
-        @media (max-width: 1024px) { /* 在平板和手机上禁用视差效果 */
-            .parallax {
-                background-attachment: scroll;
-            }
         }
     </style>
 </head>
 <body class="leading-relaxed">
 
-    <!-- 新增：页面整体布局容器 -->
+    <!-- 页面整体布局容器 -->
     <div class="relative lg:flex lg:justify-center">
 
-        <!-- 新增：左侧装饰面板 (仅在 lg 以上的大屏幕显示) -->
+        <!-- 改动 2: 移除了左侧图片的边框和内边距 -->
         <!-- 请将这里的背景图片替换为您喜欢的装饰图 -->
-        <div class="hidden lg:block fixed left-0 top-0 w-[calc((100%-480px)/2)] h-full p-4 xl:p-8">
-            <div class="w-full h-full bg-cover bg-center rounded-2xl shadow-lg" style="background-image: url('https://placehold.co/800x1200/e3d6d0/ffffff?text=左侧装饰图');"></div>
+        <div class="hidden lg:block fixed left-0 top-0 w-[calc((100%-480px)/2)] h-full bg-cover bg-center" style="background-image: url('https://placehold.co/800x1200/e3d6d0/ffffff?text=左侧装饰图');">
         </div>
 
-        <!-- 主内容容器，在大屏上限制宽度，形成手机模拟效果 -->
+        <!-- 主内容容器 -->
         <div class="w-full max-w-[480px] lg:shadow-2xl lg:my-4 bg-white">
 
             <!-- 1. 主视觉区域 -->
             <header
                 class="h-screen min-h-[600px] flex flex-col items-center justify-center text-white text-center p-4 parallax"
                 style="background-image: url('images/开头竖版.jpg');">
-                <div class="bg-black bg-opacity-40 p-6 md:p-8 rounded-xl backdrop-blur-sm">
+                <div class="bg-black bg-opacity-40 p-6 rounded-xl backdrop-blur-sm">
                     <p class="text-xl md:text-3xl mb-4 tracking-widest">WE ARE GETTING MARRIED</p>
                     <h1 class="text-4xl sm:text-5xl font-headline font-bold">张睿 & 林林</h1>
                     <p class="text-lg md:text-2xl mt-6 tracking-wide">2025年08月02日</p>
@@ -151,188 +144,16 @@
                 <p>❤️ Made with Love ❤️</p>
                 <p>张睿 & 林林</p>
             </footer>
-
-        </div> <!-- 主内容容器结束 -->
-
-        <!-- 新增：右侧装饰面板 (仅在 lg 以上的大屏幕显示) -->
-        <!-- 请将这里的背景图片替换为您喜欢的装饰图 -->
-        <div class="hidden lg:block fixed right-0 top-0 w-[calc((100%-480px)/2)] h-full p-4 xl:p-8">
-             <div class="w-full h-full bg-cover bg-center rounded-2xl shadow-lg" style="background-image: url('https://placehold.co/800x1200/d0d9e3/ffffff?text=右侧装饰图');"></div>
         </div>
 
-    </div> <!-- 页面整体布局容器结束 -->
+        <!-- 改动 2: 移除了右侧图片的边框和内边距 -->
+        <!-- 请将这里的背景图片替换为您喜欢的装饰图 -->
+        <div class="hidden lg:block fixed right-0 top-0 w-[calc((100%-480px)/2)] h-full bg-cover bg-center" style="background-image: url('https://placehold.co/800x1200/d0d9e3/ffffff?text=右侧装饰图');">
+        </div>
+    </div>
 
     <script>
         lucide.createIcons();
     </script>
 </body>
 </html>
-
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="zh-CN">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    &lt;!&ndash; 网页标题已更新 &ndash;&gt;-->
-<!--    <title>我们结婚啦 | 张睿 & 林林</title>-->
-<!--    -->
-<!--    <script src="https://cdn.tailwindcss.com"></script>-->
-<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
-<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
-<!--    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">-->
-<!--    <script src="https://unpkg.com/lucide@latest"></script>-->
-<!--    -->
-<!--    <style>-->
-<!--        body {-->
-<!--            font-family: 'Noto Serif SC', serif;-->
-<!--            background-color: #fdfaf6;-->
-<!--            color: #5d4037;-->
-<!--            scroll-behavior: smooth;-->
-<!--        }-->
-<!--        .font-headline {-->
-<!--            font-family: 'Noto Serif SC', serif;-->
-<!--        }-->
-<!--        .btn-primary {-->
-<!--            background-color: #d2966d;-->
-<!--            color: white;-->
-<!--            transition: all 0.3s ease;-->
-<!--        }-->
-<!--        .btn-primary:hover {-->
-<!--            background-color: #c88458;-->
-<!--            transform: translateY(-2px);-->
-<!--            box-shadow: 0 4px 10px rgba(0,0,0,0.1);-->
-<!--        }-->
-<!--        .parallax {-->
-<!--            background-attachment: fixed;-->
-<!--            background-position: center;-->
-<!--            background-repeat: no-repeat;-->
-<!--            background-size: cover;-->
-<!--        }-->
-<!--        @media (max-width: 768px) {-->
-<!--            .parallax {-->
-<!--                background-attachment: scroll;-->
-<!--            }-->
-<!--        }-->
-<!--    </style>-->
-<!--</head>-->
-<!--<body class="leading-relaxed">-->
-
-<!--    &lt;!&ndash; 1. 主视觉区域 &ndash;&gt;-->
-<!--    &lt;!&ndash; 请将这里的背景图片地址替换为您最喜欢的横版婚纱照 &ndash;&gt;-->
-<!--    <header -->
-<!--        class="h-screen min-h-[600px] flex flex-col items-center justify-center text-white text-center p-4 parallax" -->
-<!--        style="background-image: url('images/开头竖版.jpg');">-->
-<!--        <div class="bg-black bg-opacity-40 p-6 md:p-8 rounded-xl backdrop-blur-sm">-->
-<!--            <p class="text-xl md:text-3xl mb-4 tracking-widest">WE ARE GETTING MARRIED</p>-->
-<!--            &lt;!&ndash; 名字已更新 &ndash;&gt;-->
-<!--            <h1 class="text-4xl sm:text-5xl md:text-8xl font-headline font-bold">张睿 & 林林</h1>-->
-<!--            &lt;!&ndash; 日期已更新 &ndash;&gt;-->
-<!--            <p class="text-lg md:text-2xl mt-6 tracking-wide">2025年08月02日</p>-->
-<!--        </div>-->
-<!--    </header>-->
-
-<!--    <main class="max-w-4xl mx-auto">-->
-<!--        &lt;!&ndash; 2. 邀请语区域 &ndash;&gt;-->
-<!--        <section class="text-center py-16 md:py-20 px-6">-->
-<!--            <h2 class="text-3xl md:text-4xl font-headline mb-6">诚挚邀请</h2>-->
-<!--            <p class="text-lg md:text-xl max-w-2xl mx-auto leading-loose">-->
-<!--                始于初见，陷于陪伴，终于白首。<br>-->
-<!--                我们决定用一生去回答“我愿意”。<br>-->
-<!--                诚挚地邀请您和您的家人，<br>-->
-<!--                来参加我们的婚礼，<br>-->
-<!--                见证并分享这份独一无二的喜悦。-->
-<!--            </p>-->
-<!--        </section>-->
-<!--        -->
-<!--        <div class="border-t-2 border-dashed border-gray-300 w-32 mx-auto"></div>-->
-
-<!--        &lt;!&ndash; 3. 婚礼信息 &ndash;&gt;-->
-<!--        <section id="details" class="py-16 md:py-20 px-6">-->
-<!--            <h2 class="text-3xl md:text-4xl font-headline text-center mb-12">婚礼信息</h2>-->
-<!--            <div class="bg-white shadow-xl rounded-2xl p-8 md:p-12 overflow-hidden">-->
-<!--                <div class="grid md:grid-cols-2 gap-10 text-lg">-->
-<!--                    <div class="flex items-start space-x-4">-->
-<!--                        <i data-lucide="calendar-heart" class="w-8 h-8 text-[#d2966d] flex-shrink-0 mt-1"></i>-->
-<!--                        <div>-->
-<!--                            <h3 class="font-bold text-xl mb-1">婚礼日期</h3>-->
-<!--                            &lt;!&ndash; 婚礼日期已更新 &ndash;&gt;-->
-<!--                            <p>2025年8月2日，星期六</p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="flex items-start space-x-4">-->
-<!--                        <i data-lucide="clock" class="w-8 h-8 text-[#d2966d] flex-shrink-0 mt-1"></i>-->
-<!--                        <div>-->
-<!--                            <h3 class="font-bold text-xl mb-1">晚宴时间</h3>-->
-<!--                            &lt;!&ndash; 晚宴时间已更新 &ndash;&gt;-->
-<!--                            <p>18:18</p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="md:col-span-2 flex items-start space-x-4">-->
-<!--                        <i data-lucide="map-pin" class="w-8 h-8 text-[#d2966d] flex-shrink-0 mt-1"></i>-->
-<!--                        <div>-->
-<!--                            <h3 class="font-bold text-xl mb-1">婚礼地点</h3>-->
-<!--                            &lt;!&ndash; 婚礼地点已更新 &ndash;&gt;-->
-<!--                            <p class="mb-2">江苏省海安市王府邦瑞国际大酒店-奥斯卡厅</p>-->
-<!--                            &lt;!&ndash; 重要提示：请在地图应用中搜索到酒店精确位置后，点击“分享”并复制链接，替换下面的 href 值 &ndash;&gt;-->
-<!--                            <a href="https://surl.amap.com/owplguw46Yf" target="_blank" class="inline-block btn-primary px-4 py-2 rounded-lg text-sm">-->
-<!--                                查看地图 & 导航-->
-<!--                            </a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </section>-->
-
-<!--        &lt;!&ndash; 4. 我们的照片 &ndash;&gt;-->
-<!--        <section class="py-16 md:py-20 px-6">-->
-<!--             <h2 class="text-3xl md:text-4xl font-headline text-center mb-12">美好回忆</h2>-->
-<!--             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">-->
-<!--                <div class="overflow-hidden rounded-lg shadow-lg aspect-w-3 aspect-h-4 group">-->
-<!--                    <img src="images/张睿单人.jpg" alt="我们的照片1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">-->
-<!--                </div>-->
-<!--                 <div class="overflow-hidden rounded-lg shadow-lg aspect-w-3 aspect-h-4 group">-->
-<!--                    <img src="images/林林单人.jpg" alt="我们的照片2" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">-->
-<!--                </div>-->
-<!--&lt;!&ndash;                 <div class="overflow-hidden rounded-lg shadow-lg aspect-w-3 aspect-h-4 group">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <img src="https://placehold.co/600x800/b4b7c4/ffffff?text=写真1" alt="我们的照片3" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                 <div class="overflow-hidden rounded-lg shadow-lg aspect-w-3 aspect-h-4 group">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <img src="https://placehold.co/600x800/c4bfb4/ffffff?text=写真2" alt="我们的照片4" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--             </div>-->
-<!--        </section>-->
-
-<!--        &lt;!&ndash; 5. 宾客回执 (RSVP) - 更新为 Script 方式 &ndash;&gt;-->
-<!--        <section id="rsvp" class="bg-white py-16 md:py-20 px-6">-->
-<!--            <div class="max-w-xl mx-auto text-center">-->
-<!--                <h2 class="text-3xl md:text-4xl font-headline mb-4">期待您的到来</h2>-->
-<!--                &lt;!&ndash; 建议的回执截止日期 &ndash;&gt;-->
-<!--                <p class="text-gray-600 mb-8">为便于我们为您安排住宿，请您在2025年7月20日前填写以下回执，感谢！</p>-->
-
-<!--                &lt;!&ndash; 修复方案：使用 Script 方式嵌入，并移除了有问题的 height=0 参数 &ndash;&gt;-->
-<!--                &lt;!&ndash; 我们将脚本放在一个独立的容器中，并设置为 text-left 以避免样式冲突 &ndash;&gt;-->
-<!--                <div class="mt-8 border border-gray-200 rounded-xl shadow-lg overflow-hidden" style="height: 1000px;">-->
-<!--                    <iframe-->
-<!--                        src="https://ae679rv4.jsjform.com/f/aXJAsk"-->
-<!--                        style="width: 100%; height: 100%; border: 0;"-->
-<!--                        allowfullscreen>-->
-<!--                    </iframe>-->
-<!--            </div>-->
-<!--        </section>-->
-
-<!--    </main>-->
-
-<!--    <footer class="text-center py-8 text-gray-500">-->
-<!--        <p>❤️ Made with Love ❤️</p>-->
-<!--        &lt;!&ndash; 名字已更新 &ndash;&gt;-->
-<!--        <p>张睿 & 林林</p>-->
-<!--    </footer>-->
-
-<!--    <script>-->
-<!--        lucide.createIcons();-->
-<!--    </script>-->
-<!--</body>-->
-<!--</html>-->
-<!--```-->
